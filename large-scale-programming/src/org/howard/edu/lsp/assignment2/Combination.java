@@ -10,75 +10,67 @@ import java.util.Arrays;
  */
 
 public class Combination {
+	
+	ArrayList<ArrayList<Integer>> outputArray = new ArrayList<ArrayList<Integer>>();
+	int [] inputArray;
+	
 	/**
-	 * this function returns the different elements in an array that add up to a particular target sum.
+	 * A function that provides a point of access to the class for the user
+	 * the function calls other private methods which generate subsets and update the outputArray
 	 * @param target
 	 * @param intArray
 	 * @return
 	 */
 	public String getCombinations(int target, int []intArray) {
-
-		ArrayList<ArrayList<Integer>> outputArray = new ArrayList<ArrayList<Integer>>(); //arraylist to store the combinations
-
-		for (int i = 0; i < intArray.length; i++) {
-
-			ArrayList<Integer> workingList = new ArrayList<Integer>();
-
-			//check if current element is greater than the target sum
-			if (intArray[i] < target) {
-
-				workingList.add(i);
-				int sum = intArray[i];
-				int benchmarkIndex = i;
-
-				for (int j = i + 1; j < intArray.length; j++) {
-					sum += intArray[j];
-
-					if (sum < target) {
-						workingList.add(j);
-					}
-
-					else if (sum > target) {
-						sum -= intArray[j];	
-					}
-
-					else if (sum == target) {
-						// when there is a combination that meets the target, add to the arrayList
-						sum -= intArray[j];
-						workingList.add(j);
-						if (!outputArray.contains(workingList)) {
-							ArrayList<Integer> workingList_copy = new ArrayList<Integer>(workingList);
-							outputArray.add(workingList_copy);
-						}
-					}
-
-					if (j == intArray.length - 1) {
-						// update the inner loop for different combinations
-						if (j != benchmarkIndex) {
-							benchmarkIndex++;
-							j = benchmarkIndex;
-							sum = intArray[i];
-							workingList.removeAll(workingList);
-							workingList.add(i);
-						}
-
-					}
-
-				}
-
-			}
-
-			else if (intArray[i] == target) {
-				//if the target is equal to an element in array, it just add the index to the outputArray
-				workingList.add(i);
-				ArrayList<Integer> workingList_copy = new ArrayList<Integer>(workingList);
-				outputArray.add(workingList_copy);
-				workingList.removeAll(workingList);
-			}
+		
+		outputArray.removeAll(outputArray);
+		inputArray = intArray;
+		
+		if (intArray.length == 0 ) {
+			return "Invalid Input\n";
 
 		}
+		else {
+			generateSubsets(0, target, intArray, new ArrayList<Integer>());
+		}
+		return ("array: " + Arrays.toString(intArray) + " target: " + target + " >>> " + outputArray + "\n");
+		 
+	}
+	
+	/**
+	 * a recursive functions to find all the possible subsets of the given array
+	 * the function then updates the outputArray with subsets that add up to the target sum
+	 * @param start
+	 * @param target
+	 * @param arr
+	 * @param current
+	 */
 
-		return ("An input of " + Arrays.toString(intArray) + " with target sum  " +target + " has the combinations " + outputArray + "\n");
+	private void generateSubsets (int start,int target, int []arr, ArrayList<Integer> current){
+		if (calculateSum(current) == target) {
+			ArrayList<Integer> current_copy = new ArrayList<Integer> (current);
+			outputArray.add(current_copy);
+		}
+		for (int i = start; i < arr.length; i++) {
+			current.add(i);
+			generateSubsets(i+1, target, arr, current);
+			current.remove(current.size() - 1);
+		}		
+	}
+	
+	/**
+	 * this function receives and array of indexes and computes the sum of the values from inputArray
+	 * @param arr
+	 * @return
+	 */
+
+	private int calculateSum(ArrayList<Integer> arr) {
+		int sum = 0;
+		for (Integer num : arr) {
+			sum += inputArray[num];
+		}
+		return sum;
+
 	}
 
 }
