@@ -1,4 +1,6 @@
-package org.howard.edu.lsp.assignment2;
+package org.howard.edu.lsp.assignment2.test;
+
+import org.howard.edu.lsp.assignment2.combinations.Combination;
 
 /**
  * This class is a test class for the code in Combination.java
@@ -11,7 +13,7 @@ public class Test {
 	/**
 	 * Main function
 	 * creates a combination class, provides it various distinct inputs and prints the result
-	 * @param args
+	 * @param args default java 
 	 */
 	
 	public static void main(String[] args) {
