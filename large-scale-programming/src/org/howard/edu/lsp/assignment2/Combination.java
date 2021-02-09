@@ -10,10 +10,10 @@ import java.util.Arrays;
  */
 
 public class Combination {
-	
+
 	ArrayList<ArrayList<Integer>> outputArray = new ArrayList<ArrayList<Integer>>();
 	int [] inputArray;
-	
+
 	/**
 	 * A function that provides a point of access to the class for the user
 	 * the function calls other private methods which generate subsets and update the outputArray
@@ -21,22 +21,26 @@ public class Combination {
 	 * @param intArray
 	 * @return
 	 */
-	public String getCombinations(int target, int []intArray) {
-		
+
+	public String getCombinations(int targetSum, int []intArray) {
 		outputArray.removeAll(outputArray);
 		inputArray = intArray;
-		
+
 		if (intArray.length == 0 ) {
 			return "Invalid Input\n";
-
 		}
 		else {
-			generateSubsets(0, target, intArray, new ArrayList<Integer>());
+			generateSubsets(0, targetSum, intArray, new ArrayList<Integer>());
 		}
-		return ("array: " + Arrays.toString(intArray) + " target: " + target + " >>> " + outputArray + "\n");
-		 
+		if (outputArray.size()== 0) {
+			return ("array: " + Arrays.toString(intArray) + " target: " + targetSum + " >>> " + "No combinataion\n");
+		}
+		else {
+			return ("array: " + Arrays.toString(intArray) + " target: " + targetSum + " >>> " + outputArray + "\n");
+		}
 	}
-	
+
+
 	/**
 	 * a recursive functions to find all the possible subsets of the given array
 	 * the function then updates the outputArray with subsets that add up to the target sum
@@ -46,18 +50,18 @@ public class Combination {
 	 * @param current
 	 */
 
-	private void generateSubsets (int start,int target, int []arr, ArrayList<Integer> current){
-		if (calculateSum(current) == target) {
+	private void generateSubsets (int start,int targetSum, int []arr, ArrayList<Integer> current){
+		if (calculateSum(current) == targetSum) {
 			ArrayList<Integer> current_copy = new ArrayList<Integer> (current);
 			outputArray.add(current_copy);
 		}
 		for (int i = start; i < arr.length; i++) {
 			current.add(i);
-			generateSubsets(i+1, target, arr, current);
+			generateSubsets(i+1, targetSum, arr, current);
 			current.remove(current.size() - 1);
 		}		
 	}
-	
+
 	/**
 	 * this function receives and array of indexes and computes the sum of the values from inputArray
 	 * @param arr
@@ -70,7 +74,5 @@ public class Combination {
 			sum += inputArray[num];
 		}
 		return sum;
-
 	}
-
 }
