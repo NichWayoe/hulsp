@@ -7,7 +7,7 @@ import java.util.List;
 import org.howard.edu.lsp.assignment4.IntegerSetException.IntegerSetException;
 /**
  * 
- * @author nicholas Wayoe
+ * @author Nicholas Wayoe
  * an implementation of the abstraction of the ArrayList class
  */
 public class IntegerSet {
