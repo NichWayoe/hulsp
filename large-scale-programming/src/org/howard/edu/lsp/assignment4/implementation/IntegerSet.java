@@ -38,7 +38,7 @@ public class IntegerSet {
 
 	/**
 	 * checks whether the a particular set is equal to the set of the class.
-	 * equal >> the same number of elements
+	 * equal when they same number of elements
 	 * @param b the set to compare with the 
 	 * @return True if the sets are equal and False otherwise
 	 */
