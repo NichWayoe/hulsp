@@ -62,7 +62,7 @@ public class Driver {
 		System.out.println("set2 - set1 = " + set.toString() + "\n");
 
 		set.clear();
-		System.out.println("clear the elements in set1 = " + set.toString() + "\n");
+		System.out.println("cleared the elements in set1 = " + set.toString() + "\n");
 
 		System.out.println("the largest element in set1 is " + set.largest() + "\n"); 
 
