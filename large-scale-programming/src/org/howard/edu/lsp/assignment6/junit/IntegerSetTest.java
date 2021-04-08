@@ -28,6 +28,10 @@ class IntegerSetTest {
 	@Test
 	@DisplayName("Test cases for Clear")
 	void TestClear() {
+		int [] arr1 =  {1, 2, 3, 4, 5, 6};
+		for (int num : arr1) {
+			integerSet1.add(num);
+		}
 		integerSet1.clear();
 		assertEquals(integerSet1.getSet().size(), 0);
 	}
