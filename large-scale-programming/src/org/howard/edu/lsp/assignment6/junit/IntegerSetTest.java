@@ -143,10 +143,7 @@ class IntegerSetTest {
 	@DisplayName("Test cases for isEmpty")
 	void TestisEmpty() {
 		assertEquals(integerSet1.isEmpty(), true);
-		int [] arr1 =  {1};
-		for (int num : arr1) {
-			integerSet1.add(num);
-		}
+		integerSet1.add(1);
 		assertEquals(integerSet1.isEmpty(), false);
 	}
 
@@ -213,8 +210,4 @@ class IntegerSetTest {
 		integerSet1 = null;
 		integerSet2 = null;
 	}
-
-
-
-
 }
