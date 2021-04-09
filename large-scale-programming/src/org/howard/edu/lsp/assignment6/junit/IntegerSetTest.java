@@ -1,12 +1,8 @@
 package org.howard.edu.lsp.assignment6.junit;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.howard.edu.lsp.assignment4.IntegerSetException.IntegerSetException;
 import org.howard.edu.lsp.assignment6.integerset.IntegerSet;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,13 +12,12 @@ class IntegerSetTest {
 
 	private IntegerSet integerSet1;
 	private IntegerSet integerSet2;
-	private IntegerSet integerSet3;
 
 	@BeforeEach
 	void setup() {
 		integerSet1 = new IntegerSet();
 		integerSet2 = new IntegerSet();
-		integerSet3 = new IntegerSet();
+
 	}
 
 	@Test
@@ -33,7 +28,8 @@ class IntegerSetTest {
 			integerSet1.add(num);
 		}
 		integerSet1.clear();
-		assertEquals(integerSet1.getSet().size(), 0);
+		assertNotEquals(integerSet1.toString(), "[1,2,3,4,5,6]");
+		assertEquals(integerSet1.toString(), "[]");
 	}
 
 
@@ -45,6 +41,7 @@ class IntegerSetTest {
 			integerSet1.add(num);
 		}
 		assertEquals(integerSet1.smallest(), 1);
+		assertNotEquals(integerSet1.smallest(), 2);
 	}
 
 	@DisplayName("Test cases for smallest when all number are the same ")
@@ -54,6 +51,7 @@ class IntegerSetTest {
 			integerSet1.add(num);
 		}
 		assertEquals(integerSet1.smallest(), 1);
+		assertNotEquals(integerSet1.smallest(), 0);
 	}
 
 	@DisplayName("Test cases for smallest when set is empty")
@@ -72,6 +70,7 @@ class IntegerSetTest {
 			integerSet1.add(num);
 		}
 		assertEquals(integerSet1.largest(), 20);
+		assertNotEquals(integerSet1.largest(), 5);
 	}
 
 
@@ -92,6 +91,7 @@ class IntegerSetTest {
 		for (int num : arr1) {
 			integerSet1.add(num);
 		}
+		assertNotEquals(integerSet1.length(), 2);
 		assertEquals(integerSet1.length(), 3);
 	}
 
@@ -102,16 +102,13 @@ class IntegerSetTest {
 		for (int num : arr1) {
 			integerSet1.add(num);
 		}
-		int [] arr2 =  {20, 11, 2};
+		int [] arr2 =  {1, 20, 1, 2};
 		for (int num : arr2) {
 			integerSet2.add(num);
 		}
-		int [] arr3 =  {20};
-		for (int num : arr3) {
-			integerSet3.add(num);
-		}
 		integerSet1.intersect(integerSet2);
-		assertEquals(integerSet1.getSet(),integerSet3.getSet());
+		assertEquals(integerSet1.toString(), "[1, 20]");
+		assertNotEquals(integerSet1.toString(), "[1, 20, 1");
 	}
 
 	@Test
@@ -125,12 +122,9 @@ class IntegerSetTest {
 		for (int num : arr2) {
 			integerSet2.add(num);
 		}
-		int [] arr3 =  {1, 5, 20, 1, 10, 11, 2};
-		for (int num : arr3) {
-			integerSet3.add(num);
-		}
 		integerSet1.union(integerSet2);
-		assertEquals(integerSet1.getSet(),integerSet3.getSet());
+		assertNotEquals(integerSet1.toString(), "[1, 5, 20, 1, 1, 10, 11, 2]");
+		assertEquals(integerSet1.toString(), "[1, 5, 20, 10, 11, 2]");
 
 	}
 
@@ -162,15 +156,11 @@ class IntegerSetTest {
 		int [] arr1 =  {1, 4, 8, 9};
 		for (int num : arr1) {
 			integerSet1.add(num); 
-			}
+		}
 		integerSet1.remove(8);
-		int [] arr2 =  {1, 4, 9};
-		for (int num : arr2) {
-			integerSet2.add(num);
-			}
-		assertTrue(integerSet1.equals(integerSet1));
+		assertEquals(integerSet1.toString(), "[1, 4, 9]");
 		integerSet1.remove(0);
-		assertTrue(integerSet1.equals(integerSet1));
+		assertEquals(integerSet1.toString(), "[1, 4, 9]");
 	}
 
 	@Test
@@ -185,12 +175,14 @@ class IntegerSetTest {
 			integerSet2.add(num);
 		}
 		integerSet1.diff(integerSet2);
-		
-		int [] arr3 =  {10, 15};
-		for (int num : arr3) {
-			integerSet3.add(num);
+		assertEquals(integerSet1.toString(), "[10, 15]");
+		integerSet1.clear();
+
+		for (int num : arr1) {
+			integerSet1.add(num);
 		}
-		assertTrue(integerSet1.equals(integerSet3));
+		integerSet2.diff(integerSet1);
+		assertEquals(integerSet2.toString(), "[]");
 	}
 
 	@Test
@@ -200,14 +192,8 @@ class IntegerSetTest {
 		for (int num : arr1) {
 			integerSet1.add(num);
 		}
-		
-		List<Integer> set = new ArrayList<Integer>();
-		int [] arr3 =  {1, 5, 20}; 
-		for (int num : arr3) {
-			set.add(num);
-			
-		}
-		assertTrue(integerSet1.getSet().equals(set));
+		assertEquals(integerSet1.toString(), "[1, 5, 20]");
+		assertNotEquals(integerSet1.toString(), "[1, 5, 20, 1, 1]");
 
 	}
 
@@ -218,23 +204,14 @@ class IntegerSetTest {
 		for (int num : arr1) {
 			integerSet1.add(num);
 		}
-		List<Integer> set = new ArrayList<Integer>();
-		int [] arr3 =  {1, 5, 20}; 
-		for (int num : arr3) {
-			set.add(num);
-			
-		}
-		assertEquals(integerSet1.toString(), set.toString());
-		
+		assertEquals(integerSet1.toString(), "[1, 5, 20]");
+
 	}
 
 	@AfterEach
 	void tearDown() {
 		integerSet1 = null;
 		integerSet2 = null;
-		integerSet3 = null;
-		
-
 	}
 
 
