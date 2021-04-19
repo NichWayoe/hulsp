@@ -99,7 +99,6 @@ class TestTollBooth {
 		assertEquals(booth.toString(), message);
 	}
 
-
 	@AfterEach
 	void tearDown() {
 		booth = null;
