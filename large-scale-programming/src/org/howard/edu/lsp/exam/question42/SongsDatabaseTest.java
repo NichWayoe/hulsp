@@ -2,10 +2,6 @@ package org.howard.edu.lsp.exam.question42;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,7 +31,6 @@ class SongsDatabaseTest {
 	@DisplayName ("Test for method to get song by giving genre")
 	void getSongTest() {
 		songsDatabase.addSong("afrobeats", "Burnaboy - Collateral Damage");
-		System.out.println(songsDatabase.getSongs("afrobeats").toString());
 		assertEquals(songsDatabase.getSongs("afrobeats").toString(), "[Burnaboy - Collateral Damage]");
 		assertEquals(songsDatabase.getSongs("pop").toString(), "[]");
 	}

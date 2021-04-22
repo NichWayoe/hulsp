@@ -22,7 +22,6 @@ public class HondaTruck implements Truck {
 
 	@Override
 	public void loadItems(int weight) {
-		// TODO Auto-generated method stub
 		this.weightAdded += weight;
 
 	}

@@ -100,6 +100,7 @@ public class IntegerSet {
 			return Collections.min(set);
 		}
 	}
+	
 
 	/**
 	 * adds an element to the set of the class

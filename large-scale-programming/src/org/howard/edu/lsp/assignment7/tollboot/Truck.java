@@ -19,6 +19,7 @@ public interface Truck {
 
 	/*
 	 * Method for adding weight onto the truck
+	 * unit of weight is tonnes
 	 * @param weight
 	 */
 	public void loadItems(int weight);
@@ -28,6 +29,7 @@ public interface Truck {
 	 * Method for removing weight from the added weight of the truck
 	 * if weight to be removed is greater than added weight on truck,
 	 * set added weight to zero
+	 * unit of weight is tonnes
 	 * @param weight 
 	 */
 	public void unloadItems(int weight);
@@ -35,6 +37,7 @@ public interface Truck {
 
 	/*
 	 * Totally removes all the added weight 
+	 * unit of weight is tonnes
 	 * @param weight 
 	 */
 	public void offLoadAllitems();
