@@ -20,8 +20,8 @@ class TestTollBooth {
 	@BeforeEach
 	void setUp() {
 		booth = new AccraTollBooth();
-		kia = new KiaTruck("Kia", 10, 1200);
-		honda = new HondaTruck("Honda", 5, 5000);
+		kia = new KiaTruck(10, 1200);
+		honda = new HondaTruck(5, 5000);
 	}
 
 	@DisplayName("Test cases for CalculateToll")
@@ -66,12 +66,19 @@ class TestTollBooth {
 	@DisplayName("Test cases for unloadWeight")
 	@Test
 	void TestUnloadWeight() {
+
 		kia.unloadItems(100);
 		honda.unloadItems(50);
-		assertEquals(honda.getweight(), 4950);
-		assertEquals(kia.getweight(), 1100);
-		honda.unloadItems(500000000);
-		assertEquals(honda.getweight(), 0);
+		assertEquals(honda.getweight(), 5000);
+		assertEquals(kia.getweight(), 1200);
+		honda.loadItems(5000);
+		kia.loadItems(200);
+
+		kia.unloadItems(100);
+		honda.unloadItems(300);
+		assertEquals(honda.getweight(), 9700);
+		assertEquals(kia.getweight(), 1300);
+
 	}
 
 	@DisplayName("Test cases for unloadWeight")
@@ -79,8 +86,8 @@ class TestTollBooth {
 	void TestOffAllWeight() {
 		kia.offLoadAllitems();
 		honda.offLoadAllitems();
-		assertEquals(kia.getweight(), 0);
-		assertEquals(kia.getweight(), 0);
+		assertEquals(kia.getweight(), 1200);
+		assertEquals(honda.getweight(), 5000);
 	}
 
 	@DisplayName("Test cases for DisplayData")
@@ -88,14 +95,14 @@ class TestTollBooth {
 	void TestDisplayData() {
 		double toll = booth.calculateToll(honda);
 		booth.payToll(toll);
-		String message = "Total since last collection - Receipts: $" +toll + " Trucks: " + booth.getTotalNUmberOfTracks();
+		String message = "Total since last collection - Receipts: $" +toll + " Trucks: " + booth.getTotalNUmberOfTrucks();
 		assertEquals(booth.displayData(), message);
 	}
 
 	@DisplayName("Test cases for toString")
 	@Test
 	void TesttoString() {
-		String message = "Total since last collection - Receipts: $" + booth.getTotalReceipts() + " Trucks: " + booth.getTotalNUmberOfTracks();
+		String message = "Total since last collection - Receipts: $" + booth.getTotalReceipts() + " Trucks: " + booth.getTotalNUmberOfTrucks();
 		assertEquals(booth.toString(), message);
 	}
 

@@ -1,25 +1,20 @@
 package org.howard.edu.lsp.assignment7.tollboot;
 
 public class HondaTruck implements Truck {
-	private String make;
-	private int weight;
+	private int weightAdded = 0;
+	private int orginalTruckWeight;
 	private int numberOfAxle;
 
-	public HondaTruck(String make, int numberOfAxle, int weight) {
-		this.make = make;
-		this.weight = weight;
+	public HondaTruck(int numberOfAxle, int weight) {
+		this.orginalTruckWeight = weight;
 		this.numberOfAxle = numberOfAxle;
 	}
 
 	@Override
-	public String getMakeofTruck() {
-		return this.make;
+	public int getweight() {
+		return this.weightAdded + this.orginalTruckWeight;	
 	}
 
-	@Override
-	public int getweight() {
-		return this.weight;	
-	}
 	@Override
 	public int getnumberOfAxles() {
 		return this.numberOfAxle;	
@@ -28,26 +23,26 @@ public class HondaTruck implements Truck {
 	@Override
 	public void loadItems(int weight) {
 		// TODO Auto-generated method stub
-		this.weight += weight;
+		this.weightAdded += weight;
 
 	}
 
 	@Override
 	public void unloadItems(int weight) {
-		if (weight > this.weight) {
-			this.weight = 0;
+		if (weight > this.weightAdded) {
+			this.weightAdded = 0;
 		}
 		else {
-			this.weight -= weight;
+			this.weightAdded -= weight;
 		}
 	}
 
 
-@Override
-public void offLoadAllitems() {
-	this.weight = 0;
+	@Override
+	public void offLoadAllitems() {
+		this.weightAdded = 0;
 
-}
+	}
 
 
 

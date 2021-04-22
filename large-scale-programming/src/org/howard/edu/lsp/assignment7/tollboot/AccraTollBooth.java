@@ -8,7 +8,7 @@ public class AccraTollBooth implements TollBooth {
 		return totalReceipts;
 	}
 
-	public int getTotalNUmberOfTracks() {
+	public int getTotalNUmberOfTrucks() {
 		return totalNUmberOfTracks;
 	}
 
@@ -35,7 +35,8 @@ public class AccraTollBooth implements TollBooth {
 		System.out.println("Truck arrival - Axles: " + numberOfAxles + " Total weight: " + weight + " Toll due: $"+ toll);
 		return toll;
 	}
-
+	
+	@Override
 	public void payToll(double amount) {
 		totalNUmberOfTracks += 1;
 		this.totalReceipts += amount;
